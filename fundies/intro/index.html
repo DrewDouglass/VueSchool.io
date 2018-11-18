@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Shopping List App - Fundies</title>
+    <style media="screen">
+        .strikeout {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +24,7 @@
             <button type="button" class="btn btn-primary" v-bind:disabled="newItem.length === 0" @click="saveItem">Save Item</button>
         </div>
         <ul>
-            <li v-for="item in items" :class="{strikeout: item.purchased}"> {{ item.label }} </li>
+            <li v-for="item in reversedItems" :class="{strikeout: item.purchased}"> {{ item.label }} </li>
         </ul>
         <p v-if="items.length === 0">Your shopping is done!</p>
     </div>
@@ -45,6 +50,11 @@
                         purchased: false
                     }
                 ],
+            },
+            computed: {
+                reversedItems() {
+                    return this.items.slice(0).reverse();
+                }
             },
             methods: {
                 saveItem: function() {
