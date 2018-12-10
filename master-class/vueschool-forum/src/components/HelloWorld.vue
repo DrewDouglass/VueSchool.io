@@ -16,7 +16,7 @@ import sourceData from '@/data';
 console.log(sourceData);
 export default {
   name: 'HelloWorld',
-  data() {
+  data: function() {
     return {
       threads: sourceData.threads,
       posts: sourceData.posts,
